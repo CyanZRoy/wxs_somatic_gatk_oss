@@ -83,7 +83,7 @@ workflow SomaticVariantAnalysis {
             sample_id = tumor_sample_id,
             fasta=fasta,
 		    ref_dir=ref_dir,
-            platform=platform
+            platform=platform,
             docker_image = bwa_docker_image,
             cluster_config = BIGcluster_config
     }
@@ -156,6 +156,7 @@ workflow SomaticVariantAnalysis {
             sample_id = normal_sample_id,
             fasta=fasta,
 		    ref_dir=ref_dir,
+            platform=platform,
             docker_image = bwa_docker_image,
             cluster_config = BIGcluster_config
     }
