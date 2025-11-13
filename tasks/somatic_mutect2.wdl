@@ -1,3 +1,5 @@
+version 1.0
+
 task somatic_mutect2 {
     input {
         # Tumor sample inputs

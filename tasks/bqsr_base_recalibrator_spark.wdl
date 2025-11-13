@@ -1,3 +1,5 @@
+version 1.0
+
 task bqsr_base_recalibrator_spark {
     input {
         # 输入来自 mark_duplicates_spark task

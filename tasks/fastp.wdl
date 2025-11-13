@@ -1,3 +1,5 @@
+version 1.0
+
 task fastp_qc {
     input {
         File fastq1_gz      # 输入文件 R1，WDL 中用 File 类型表示

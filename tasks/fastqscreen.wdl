@@ -1,3 +1,5 @@
+version 1.0
+
 task fastq_screen_contamination {
     input {
         # 输入与我们上游的 fastp task 输出保持一致

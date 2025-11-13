@@ -1,3 +1,5 @@
+version 1.0
+
 task bwa_mem_and_sort {
     input {
         # 输入来自于 fastp 的输出

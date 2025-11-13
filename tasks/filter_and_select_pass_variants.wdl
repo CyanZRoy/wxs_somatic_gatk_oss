@@ -1,3 +1,5 @@
+version 1.0
+
 task filter_and_select_pass_variants {
     input {
         # 输入来自 somatic_mutect2 task

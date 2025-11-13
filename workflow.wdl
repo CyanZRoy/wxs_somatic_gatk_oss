@@ -1,3 +1,5 @@
+version 1.0
+
 import "./tasks/fastp.wdl" as fastp_qc
 import "./tasks/mapping.wdl" as bwa_mem_and_sort
 import "./tasks/mark_duplicates_spark.wdl" as mark_duplicates_spark

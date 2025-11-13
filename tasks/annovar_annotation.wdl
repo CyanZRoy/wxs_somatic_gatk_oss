@@ -1,3 +1,5 @@
+version 1.0
+
 task annovar_annotation {
     input {
         # 输入来自 filter_and_select_pass_variants task

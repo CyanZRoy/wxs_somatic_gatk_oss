@@ -1,3 +1,5 @@
+version 1.0
+
 task bsrq_apply_bqsr_spark {
     input {
         # 输入来自 mark_duplicates_spark 的 BAM

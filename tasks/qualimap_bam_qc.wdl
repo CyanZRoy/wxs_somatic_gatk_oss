@@ -1,3 +1,5 @@
+version 1.0
+
 task qualimap_bam_qc {
     input {
         # Input from the ApplyBQSR step
