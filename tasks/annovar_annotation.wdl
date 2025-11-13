@@ -28,10 +28,6 @@ task annovar_annotation {
     command <<<
         set -e
 
-        # 步骤 1: 解压 Annovar 数据库
-        # 这会在当前工作目录创建一个名为 'humandb' 的文件夹
-        tar -xzvf ~{annovar_db_archive}
-
         # 步骤 2: 运行 Annovar 注释
         # Docker 镜像中 Annovar 的路径为 /opt/annovar/
         # 我们将解压后的 'humandb' 目录作为数据库路径

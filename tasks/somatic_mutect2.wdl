@@ -23,6 +23,9 @@ task somatic_mutect2 {
         # --- 平台特定输入 ---
         String docker_image
         String cluster_config
+
+        # 对于 32GB 的机器，为 GATK 的 Java 进程分配 28GB 是一个安全值，为 OS 和 Cromwell 留出 4GB
+        Int java_mem_gb = 28
     }
 
     # Define the output VCF name
@@ -31,8 +34,6 @@ task somatic_mutect2 {
     # Disk space estimation: Sum of BAMs + Ref + 40GB buffer for VCF and temp files
     Int disk_gb = ceil(size(tumor_bam, "GB") + size(normal_bam, "GB") + 140
 
-    # 对于 32GB 的机器，为 GATK 的 Java 进程分配 28GB 是一个安全值，为 OS 和 Cromwell 留出 4GB
-    Int java_mem_gb = 28
 
     command <<<
         set -e

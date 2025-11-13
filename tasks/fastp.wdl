@@ -20,7 +20,6 @@ task fastp_qc {
 
         # 执行 fastp 命令
         # WDL 会自动将输入文件拉取到任务的工作目录
-        # 用 ~{variable} 的方式在命令中引用 WDL 变量
         fastp --thread $(nproc) \
               -i ~{fastq1_gz} \
               -I ~{fastq2_gz} \
