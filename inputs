@@ -23,5 +23,6 @@
   "{{ project_name }}.SMALLcluster_config": "{{ SMALLcluster_config }}",
   "{{ project_name }}.BIGcluster_config": "{{ BIGcluster_config }}",
   "{{ project_name }}.MEDcluster_config": "{{ MEDcluster_config }}",
-  "{{ project_name }}.platform": "{{ platform }}"
+  "{{ project_name }}.platform": "{{ platform }}",
+  "{{ project_name }}.user": "{{ user }}"
 }
