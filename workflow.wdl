@@ -1,6 +1,7 @@
 version 1.0
 
 import "./tasks/fastp.wdl" as fastp_qc
+import "./tasks/fastqc.wdl" as fastqc
 import "./tasks/mapping.wdl" as bwa_mem_and_sort
 import "./tasks/mark_duplicates_spark.wdl" as mark_duplicates_spark
 import "./tasks/bqsr_base_recalibrator_spark.wdl" as bqsr_base_recalibrator_spark
