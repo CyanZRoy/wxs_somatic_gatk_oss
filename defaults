@@ -17,6 +17,5 @@
   "SMALLcluster_config": "OnDemand bcs.ps.g.xlarge img-ubuntu-vpc",
   "BIGcluster_config": "OnDemand bcs.a2.7xlarge img-ubuntu-vpc",
   "MEDcluster_config": "OnDemand bcs.b2.3xlarge img-ubuntu-vpc",
-  "user": "zhangchao",
   "platform": "ILLUMINA"
 }
