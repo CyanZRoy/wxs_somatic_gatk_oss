@@ -12,7 +12,7 @@ import "./tasks/annovar_annotation.wdl" as annovar_annotation
 import "./tasks/qualimap_bam_qc.wdl" as qualimap_bam_qc
 
 
-workflow SomaticVariantAnalysis {
+workflow {{ project_name }} {
     input {
         # --- 样本输入 ---
         File tumor_fastq1
