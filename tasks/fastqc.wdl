@@ -1,6 +1,6 @@
 version 1.0
 
-task fastqc_analysis {
+task fastqc {
     input {
         # 输入是两个经过 trim 的 FASTQ 文件
         File trimmed_fastq1
