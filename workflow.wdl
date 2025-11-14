@@ -107,8 +107,6 @@ workflow SomaticVariantAnalysis {
             interval_padding = interval_padding,
             fasta=fasta,
 		    ref_dir=ref_dir,
-            realigned_bam=Realigner.realigner_bam,
-            realigned_bam_index=Realigner.realigner_bam_index,
             dbsnp_dir=dbsnp_dir,
             dbsnp=dbsnp,
             db_mills=db_mills,
@@ -178,8 +176,6 @@ workflow SomaticVariantAnalysis {
             sample_id = normal_sample_id,
             fasta=fasta,
 		    ref_dir=ref_dir,
-            realigned_bam=Realigner.realigner_bam,
-            realigned_bam_index=Realigner.realigner_bam_index,
             dbsnp_dir=dbsnp_dir,
             dbsnp=dbsnp,
             db_mills=db_mills,
@@ -253,7 +249,7 @@ workflow SomaticVariantAnalysis {
             recalibrated_bam = apply_bqsr_tumor.recalibrated_bam,
             recalibrated_bam_index = apply_bqsr_tumor.recalibrated_bam_index,
             sample_id = tumor_sample_id,
-            intervals_bed = intervals_bed,
+            intervals_bed = bed_file,
             docker_image = qualimap_docker_image,
             cluster_config = MEDcluster_config
     }
@@ -263,7 +259,7 @@ workflow SomaticVariantAnalysis {
             recalibrated_bam = apply_bqsr_normal.recalibrated_bam,
             recalibrated_bam_index = apply_bqsr_normal.recalibrated_bam_index,
             sample_id = normal_sample_id,
-            features_bed = features_bed,
+            intervals_bed = bed_file,
             docker_image = qualimap_docker_image,
             cluster_config = MEDcluster_config
     }
