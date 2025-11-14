@@ -1,5 +1,3 @@
-version 1.0
-
 import "./tasks/fastp.wdl" as fastp_qc
 import "./tasks/fastqc.wdl" as fastqc
 import "./tasks/mapping.wdl" as bwa_mem_and_sort
@@ -13,47 +11,47 @@ import "./tasks/qualimap_bam_qc.wdl" as qualimap_bam_qc
 
 
 workflow {{ project_name }} {
-    input {
-        # --- 样本输入 ---
-        File tumor_fastq1
-        File tumor_fastq2
-        String tumor_sample_id
-        File normal_fastq1
-        File normal_fastq2
-        String normal_sample_id
 
-        # --- 参考文件 ---
-        File ref_dir
-        String fasta
-        File dbsnp_dir
-        String dbsnp
-        File dbmills_dir
-        String db_mills
+    # --- 样本输入 ---
+    File tumor_fastq1
+    File tumor_fastq2
+    String tumor_sample_id
+    File normal_fastq1
+    File normal_fastq2
+    String normal_sample_id
 
-        # --- 配置文件 ---
-        File annovar_database   # Annovar 数据库 (humandb) 的 tar.gz 压缩包
+    # --- 参考文件 ---
+    File ref_dir
+    String fasta
+    File dbsnp_dir
+    String dbsnp
+    File dbmills_dir
+    String db_mills
 
-        # --- WGS/WES 开关 ---
-        # 如果提供了这个 BED 文件，流程将以 WES 模式运行 (使用 -L 参数)
-        # 如果不提供，则以 WGS 模式运行
-        File? bed_file
-        String interval_padding
+    # --- 配置文件 ---
+    File annovar_database   # Annovar 数据库 (humandb) 的 tar.gz 压缩包
 
-        # --- 软件镜像 ---
-        String fastp_docker_image
-        String fastqc_docker_image
-        String bwa_docker_image
-        String gatk_docker_image
-        String annovar_docker
-        String qualimap_docker_image
+    # --- WGS/WES 开关 ---
+    # 如果提供了这个 BED 文件，流程将以 WES 模式运行 (使用 -L 参数)
+    # 如果不提供，则以 WGS 模式运行
+    File? bed_file
+    String interval_padding
 
-        # --- 可选参数 ---
-        String platform
-        String BIGcluster_config
-        String MEDcluster_config
-	    String SMALLcluster_config
-        String? user
-    }
+    # --- 软件镜像 ---
+    String fastp_docker_image
+    String fastqc_docker_image
+    String bwa_docker_image
+    String gatk_docker_image
+    String annovar_docker
+    String qualimap_docker_image
+
+    # --- 可选参数 ---
+    String platform
+    String BIGcluster_config
+    String MEDcluster_config
+    String SMALLcluster_config
+
+
 
     # =========================================================================================
     # 步骤 1: 数据预处理 (并行执行于 Tumor 和 Normal 样本)
