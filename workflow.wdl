@@ -52,6 +52,7 @@ workflow {{ project_name }} {
         String BIGcluster_config
         String MEDcluster_config
 	    String SMALLcluster_config
+        String? user
     }
 
     # =========================================================================================
