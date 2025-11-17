@@ -11,8 +11,8 @@ task mark_duplicates_spark {
 
 
     # 定义输出文件的名称
-    String output_bam_name = "~{sample_id}.dedup.bam"
-    String metrics_file_name = "~{sample_id}.metrics.txt"
+    String output_bam_name = "${sample_id}.dedup.bam"
+    String metrics_file_name = "${sample_id}.metrics.txt"
 
     # 磁盘空间估算：输入 BAM * 2.5 (为 shuffle 空间和输出留足余量) + 20GB 缓冲
     Int disk_gb = ceil(size(input_bam, "GB") * 2.5) + 20
@@ -28,18 +28,18 @@ task mark_duplicates_spark {
 
         # GATK Spark 工具需要通过 --java-options 为主进程分配内存
         # 并通过 --conf 为 Spark 的执行器 (executors) 分配资源
-        gatk --java-options "-Xmx~{java_driver_memory_gb}G" MarkDuplicatesSpark \
-            -I ~{input_bam} \
-            -O ~{output_bam_name} \
-            -M ~{metrics_file_name} \
-            --conf 'spark.executor.cores=~{spark_executor_cores}' \
-            --conf 'spark.executor.memory=~{spark_executor_memory_gb}g'
+        gatk --java-options "-Xmx${java_driver_memory_gb}G" MarkDuplicatesSpark \
+            -I ${input_bam} \
+            -O ${output_bam_name} \
+            -M ${metrics_file_name} \
+            --conf 'spark.executor.cores=${spark_executor_cores}' \
+            --conf 'spark.executor.memory=${spark_executor_memory_gb}g'
     >>>
 
     output {
         # MarkDuplicatesSpark 会自动为输出的 BAM 文件生成索引
         File dedup_bam = output_bam_name
-        File dedup_bam_index = "~{output_bam_name}.bai"
+        File dedup_bam_index = "${output_bam_name}.bai"
         File dedup_metrics = metrics_file_name
     }
 

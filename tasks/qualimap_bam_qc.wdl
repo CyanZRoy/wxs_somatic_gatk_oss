@@ -14,8 +14,8 @@ task qualimap_bam_qc {
 
 
     # Define the name for the output directory and the final archive
-    String output_dir_name = "~{sample_id}_qualimap_results"
-    String output_archive_name = "~{sample_id}.qualimap_results.tar.gz"
+    String output_dir_name = "${sample_id}_qualimap_results"
+    String output_archive_name = "${sample_id}.qualimap_results.tar.gz"
 
     # Disk space estimation: Input BAM size * 2 (for temp files) + 20GB buffer
     Int disk_gb = ceil(size(recalibrated_bam, "GB") * 2) + 20
@@ -35,16 +35,16 @@ task qualimap_bam_qc {
 
         # Run Qualimap, directing its output to a specific directory
         qualimap bamqc \
-            -bam ~{recalibrated_bam} \
+            -bam ${recalibrated_bam} \
             INTERVAL \
             -nt $(nproc) \
-            --java-mem-size=~{java_mem_gb}G \
+            --java-mem-size=${java_mem_gb}G \
             -outformat PDF:HTML \
-            -outdir ~{output_dir_name}
+            -outdir ${output_dir_name}
 
         # Compress the entire output directory into a single tarball
         # This makes it easy to manage as a single output file in WDL
-        tar -czvf ~{output_archive_name} ~{output_dir_name}
+        tar -czvf ${output_archive_name} ${output_dir_name}
     >>>
 
     output {

@@ -27,7 +27,7 @@ task somatic_mutect2 {
 
 
     # Define the output VCF name
-    String output_vcf_name = "~{tumor_sample_name}.mutect2.vcf.gz"
+    String output_vcf_name = "${tumor_sample_name}.mutect2.vcf.gz"
 
     # Disk space estimation: Sum of BAMs + Ref + 40GB buffer for VCF and temp files
     Int disk_gb = ceil(size(tumor_bam, "GB") + size(normal_bam, "GB")) + 140
@@ -42,21 +42,21 @@ task somatic_mutect2 {
             INTERVAL=""
         fi
 
-        gatk --java-options "-Xmx~{java_mem_gb}G" Mutect2 \
+        gatk --java-options "-Xmx${java_mem_gb}G" Mutect2 \
             -R ${ref_dir}/${fasta} \
-            -I ~{tumor_bam} \
-            -I ~{normal_bam} \
+            -I ${tumor_bam} \
+            -I ${normal_bam} \
             $INTERVAL \
-            -normal ~{normal_sample_name} \
+            -normal ${normal_sample_name} \
             --native-pair-hmm-threads $(nproc) \
-            -O ~{output_vcf_name}
+            -O ${output_vcf_name}
     >>>
 
     output {
         # Mutect2 generates a VCF, its index, and a stats file for the filter step
         File output_vcf = output_vcf_name
-        File output_vcf_index = "~{output_vcf_name}.tbi"
-        File mutect2_stats = "~{output_vcf_name}.stats"
+        File output_vcf_index = "${output_vcf_name}.tbi"
+        File mutect2_stats = "${output_vcf_name}.stats"
     }
 
     runtime {

@@ -23,7 +23,7 @@ task bqsr_base_recalibrator_spark {
 
 
     # 定义输出文件的名称
-    String recal_table_filename = "~{sample_id}.recal_data.table"
+    String recal_table_filename = "${sample_id}.recal_data.table"
 
     # 机器有 16 核，但根据要求，只为 Spark 分配 12 个线程
     Int spark_executor_cores = 12 
@@ -43,15 +43,15 @@ task bqsr_base_recalibrator_spark {
             INTERVAL=""
         fi
 
-        gatk --java-options "-Xmx~{java_driver_memory_gb}G" BaseRecalibratorSpark \
+        gatk --java-options "-Xmx${java_driver_memory_gb}G" BaseRecalibratorSpark \
             -R ${ref_dir}/${fasta} \
-            -I ~{dedup_bam} \
+            -I ${dedup_bam} \
             --known-sites ${dbsnp_dir}/${dbsnp} \
             --known-sites ${dbmills_dir}/${db_mills} \
-            -O ~{recal_table_filename} \
+            -O ${recal_table_filename} \
             $INTERVAL \
-            --conf 'spark.executor.cores=~{spark_executor_cores}' \
-            --conf 'spark.executor.memory=~{spark_executor_memory_gb}g'
+            --conf 'spark.executor.cores=${spark_executor_cores}' \
+            --conf 'spark.executor.memory=${spark_executor_memory_gb}g'
     >>>
 
     output {

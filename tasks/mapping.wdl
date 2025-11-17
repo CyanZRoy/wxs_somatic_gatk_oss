@@ -19,10 +19,10 @@ task bwa_mem_and_sort {
 
 
     # 构造 RG (Read Group) 字符串，这是下游分析 (特别是 GATK) 的标准要求
-    String read_group = "@RG\\tID:~{sample_id}\\tSM:~{sample_id}\\tPL:~{platform}"
+    String read_group = "@RG\\tID:${sample_id}\\tSM:${sample_id}\\tPL:${platform}"
 
     # 定义输出文件名
-    String output_bam_name = "~{sample_id}.sorted.bam"
+    String output_bam_name = "${sample_id}.sorted.bam"
 
     # 磁盘空间估算：(输入 FQ x 2.5) + 参考基因组大小 + 20GB 缓冲
     Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) * 3 + 120
@@ -35,21 +35,21 @@ task bwa_mem_and_sort {
 
         # BWA 比对 -> SAM 转 BAM -> BAM 排序
         bwa mem -M \
-                -R '~{read_group}' \
+                -R '${read_group}' \
                 -t $(nproc) \
                 ${ref_dir}/${fasta} \
-                ~{trimmed_fastq1} \
-                ~{trimmed_fastq2} | \
+                ${trimmed_fastq1} \
+                ${trimmed_fastq2} | \
         samtools view -@ $(nproc)-b - | \
-        samtools sort -@ $(nproc) -o ~{output_bam_name} -
+        samtools sort -@ $(nproc) -o ${output_bam_name} -
 
         # 为生成的 BAM 文件创建索引，这是后续步骤必需的
-        samtools index -@ $(nproc) ~{output_bam_name}
+        samtools index -@ $(nproc) ${output_bam_name}
     >>>
 
     output {
         File sorted_bam = output_bam_name
-        File sorted_bam_index = "~{output_bam_name}.bai"
+        File sorted_bam_index = "${output_bam_name}.bai"
     }
 
     runtime {

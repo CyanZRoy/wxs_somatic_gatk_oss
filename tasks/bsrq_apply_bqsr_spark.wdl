@@ -21,7 +21,7 @@ task bsrq_apply_bqsr_spark {
 
 
     # 定义输出文件的名称
-    String output_bam_name = "~{sample_id}.recal.bam"
+    String output_bam_name = "${sample_id}.recal.bam"
 
     # 机器有 16 核，全部分配给 Spark Executor
     Int spark_executor_cores = 16
@@ -41,20 +41,20 @@ task bsrq_apply_bqsr_spark {
             INTERVAL=""
         fi
 
-        gatk --java-options "-Xmx~{java_driver_memory_gb}G" ApplyBQSRSpark \
+        gatk --java-options "-Xmx${java_driver_memory_gb}G" ApplyBQSRSpark \
             -R ${ref_dir}/${fasta} \
-            -I ~{dedup_bam} \
-            --bqsr-recal-file ~{recalibration_table} \
-            -O ~{output_bam_name} \
+            -I ${dedup_bam} \
+            --bqsr-recal-file ${recalibration_table} \
+            -O ${output_bam_name} \
             $INTERVAL \
-            --conf 'spark.executor.cores=~{spark_executor_cores}' \
-            --conf 'spark.executor.memory=~{spark_executor_memory_gb}g'
+            --conf 'spark.executor.cores=${spark_executor_cores}' \
+            --conf 'spark.executor.memory=${spark_executor_memory_gb}g'
     >>>
 
     output {
         # ApplyBQSRSpark 会自动为输出的 BAM 文件生成索引
         File recalibrated_bam = output_bam_name
-        File recalibrated_bam_index = "~{output_bam_name}.bai"
+        File recalibrated_bam_index = "${output_bam_name}.bai"
     }
 
     runtime {

@@ -24,18 +24,18 @@ task fastqc {
         # -o . 表示将输出文件生成在当前工作目录中
         # 这在 WDL 中是标准做法，不需要再手动创建目录
         fastqc -t $(nproc) \
-               ~{trimmed_fastq1} \
-               ~{trimmed_fastq2} \
+               ${trimmed_fastq1} \
+               ${trimmed_fastq2} \
                -o .
     >>>
 
     output {
         # fastqc 为每个输入文件生成一个 html 报告和一个 zip 压缩包
         # 我们使用之前定义的 base_name 变量来捕获正确的输出文件名
-        File html_report_1 = "~{base_name_1}_fastqc.html"
-        File zip_archive_1 = "~{base_name_1}_fastqc.zip"
-        File html_report_2 = "~{base_name_2}_fastqc.html"
-        File zip_archive_2 = "~{base_name_2}_fastqc.zip"
+        File html_report_1 = "${base_name_1}_fastqc.html"
+        File zip_archive_1 = "${base_name_1}_fastqc.zip"
+        File html_report_2 = "${base_name_2}_fastqc.html"
+        File zip_archive_2 = "${base_name_2}_fastqc.zip"
     }
 
     # runtime 块定义任务运行所需的环境和资源

@@ -17,7 +17,7 @@ task annovar_annotation {
 
 
     # 定义输出文件的前缀
-    String output_prefix = "~{tumor_sample_name}"
+    String output_prefix = "${tumor_sample_name}"
 
     # 磁盘空间估算：数据库解压后大小 + 输入VCF + 输出VCF + 20GB 缓冲
     # 这是一个粗略估算，Annovar 数据库可能很大
@@ -29,13 +29,13 @@ task annovar_annotation {
         # 步骤 2: 运行 Annovar 注释
         # Docker 镜像中 Annovar 的路径为 /opt/annovar/
         # 我们将解压后的 'humandb' 目录作为数据库路径
-        /installations/annovar/table_annovar.pl ~{filtered_vcf} \
+        /installations/annovar/table_annovar.pl ${filtered_vcf} \
             ${annovar_database} \
-            -buildver ~{buildver} \
-            -out ~{output_prefix} \
+            -buildver ${buildver} \
+            -out ${output_prefix} \
             -remove \
-            -protocol ~{protocols} \
-            -operation ~{operations} \
+            -protocol ${protocols} \
+            -operation ${operations} \
             -nastring . \
             -vcfinput \
             -thread $(nproc)
@@ -43,10 +43,10 @@ task annovar_annotation {
 
     output {
         # Annovar 使用 -vcfinput 参数会生成一个带 .hg38_multianno.vcf 后缀的 VCF 文件
-        File annotated_vcf = "~{output_prefix}.~{buildver}_multianno.vcf"
+        File annotated_vcf = "${output_prefix}.${buildver}_multianno.vcf"
 
         # 同时捕获 Annovar 生成的 tab 分隔的注释文本文件
-        File annotated_txt = "~{output_prefix}.~{buildver}_multianno.txt"
+        File annotated_txt = "${output_prefix}.${buildver}_multianno.txt"
     }
 
     runtime {

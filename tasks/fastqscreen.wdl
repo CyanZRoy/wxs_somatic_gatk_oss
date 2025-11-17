@@ -26,26 +26,26 @@ task fastq_screen_contamination {
         # --outdir 未指定，默认输出到当前目录，这是 WDL 的推荐做法
         # 使用 nproc 自动获取分配到的 CPU 核心数，这是一个非常好的实践
         fastq_screen --aligner bowtie2 \
-                     --conf ~{fastq_screen_conf} \
-                     --subset ~{subset_n} \
+                     --conf ${fastq_screen_conf} \
+                     --subset ${subset_n} \
                      --threads $(nproc) \
-                     ~{trimmed_fastq1}
+                     ${trimmed_fastq1}
 
         fastq_screen --aligner bowtie2 \
-                     --conf ~{fastq_screen_conf} \
-                     --subset ~{subset_n} \
+                     --conf ${fastq_screen_conf} \
+                     --subset ${subset_n} \
                      --threads $(nproc) \
-                     ~{trimmed_fastq2}
+                     ${trimmed_fastq2}
     >>>
 
     output {
         # 根据 fastq_screen 的实际输出捕获文件
         # 注意：fastq_screen 通常只生成 .png 和 .txt 文件，不生成 .html
-        File screen_txt_1 = "~{base_name_1}_screen.txt"
-        File screen_png_1 = "~{base_name_1}_screen.png"
+        File screen_txt_1 = "${base_name_1}_screen.txt"
+        File screen_png_1 = "${base_name_1}_screen.png"
 
-        File screen_txt_2 = "~{base_name_2}_screen.txt"
-        File screen_png_2 = "~{base_name_2}_screen.png"
+        File screen_txt_2 = "${base_name_2}_screen.txt"
+        File screen_png_2 = "${base_name_2}_screen.png"
     }
 
     runtime {
