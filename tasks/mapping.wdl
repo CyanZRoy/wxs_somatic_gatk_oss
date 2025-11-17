@@ -12,7 +12,7 @@ task bwa_mem_and_sort {
     String fasta
 
     # 可配置的参数
-    String platform = platform
+    String platform
     # --- 平台特定输入 ---
     String docker_image
     String cluster_config # e.g., "ecs.g6.8xlarge" for 32c/64GB
