@@ -40,7 +40,7 @@ task bwa_mem_and_sort {
                 ${ref_dir}/${fasta} \
                 ${trimmed_fastq1} \
                 ${trimmed_fastq2} | \
-        samtools view -@ $(nproc)-b - | \
+        samtools view -bS -@ $(nproc) - | \
         samtools sort -@ $(nproc) -o ${output_bam_name} -
 
         # 为生成的 BAM 文件创建索引，这是后续步骤必需的
