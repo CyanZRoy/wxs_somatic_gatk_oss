@@ -1,26 +1,24 @@
-version 1.0
-
 task bsrq_apply_bqsr_spark {
-    input {
-        # 输入来自 mark_duplicates_spark 的 BAM
-        File dedup_bam
-        File dedup_bam_index
-        File? intervals_bed
-        String interval_padding
 
-        # 输入来自 bqsr_base_recalibrator_spark 的 table
-        File recalibration_table
+    # 输入来自 mark_duplicates_spark 的 BAM
+    File dedup_bam
+    File dedup_bam_index
+    File? intervals_bed
+    String interval_padding
 
-        # 参考基因组
-        File ref_dir
-        String fasta
+    # 输入来自 bqsr_base_recalibrator_spark 的 table
+    File recalibration_table
 
-        String sample_id
+    # 参考基因组
+    File ref_dir
+    String fasta
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
-    }
+    String sample_id
+
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
+
 
     # 定义输出文件的名称
     String output_bam_name = "~{sample_id}.recal.bam"

@@ -1,22 +1,20 @@
-version 1.0
-
 task annovar_annotation {
-    input {
-        # 输入来自 filter_and_select_pass_variants task
-        # 注意：你的脚本是针对 .filter.vcf 文件，我们将遵循这个逻辑
-        File filtered_vcf
-        String tumor_sample_name
 
-        # Annovar 数据库，打包为 tar.gz 文件
-        File annovar_database # e.g., "humandb_hg38.tar.gz"
+    # 输入来自 filter_and_select_pass_variants task
+    # 注意：你的脚本是针对 .filter.vcf 文件，我们将遵循这个逻辑
+    File filtered_vcf
+    String tumor_sample_name
 
-        # Annovar 参数
-        String buildver = "hg38"
-        String protocols = "refGene,clinvar_20221231,gnomad40_exome,dbnsfp42c,cosmic99_v1"
-        String operations = "g,f,f,f,f"
-        String cluster_config
-        String docker_image
-    }
+    # Annovar 数据库，打包为 tar.gz 文件
+    File annovar_database # e.g., "humandb_hg38.tar.gz"
+
+    # Annovar 参数
+    String buildver = "hg38"
+    String protocols = "refGene,clinvar_20221231,gnomad40_exome,dbnsfp42c,cosmic99_v1"
+    String operations = "g,f,f,f,f"
+    String cluster_config
+    String docker_image
+
 
     # 定义输出文件的前缀
     String output_prefix = "~{tumor_sample_name}"

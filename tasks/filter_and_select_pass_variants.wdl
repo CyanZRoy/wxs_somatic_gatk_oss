@@ -1,20 +1,18 @@
-version 1.0
-
 task filter_and_select_pass_variants {
-    input {
-        # 输入来自 somatic_mutect2 task
-        File mutect2_vcf
-        File mutect2_stats # <-- 这是 FilterMutectCalls 的必需输入
-        String tumor_sample_name
 
-        # 参考基因组
-        File ref_dir
-        String fasta
+    # 输入来自 somatic_mutect2 task
+    File mutect2_vcf
+    File mutect2_stats # <-- 这是 FilterMutectCalls 的必需输入
+    String tumor_sample_name
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config
-    }
+    # 参考基因组
+    File ref_dir
+    String fasta
+
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config
+
 
     # 定义中间和最终输出文件的名称
     String filtered_vcf_name = "~{tumor_sample_name}.filtered.vcf.gz"

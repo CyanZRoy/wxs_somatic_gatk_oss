@@ -1,24 +1,22 @@
-version 1.0
-
 task bwa_mem_and_sort {
-    input {
-        # 输入来自于 fastp 的输出
-        File trimmed_fastq1
-        File trimmed_fastq2
-        String sample_id
 
-        # 基因组参考文件和相关索引
-        # 重要：BWA 需要 .amb, .ann, .bwt, .pac, .sa 索引文件
-        # 这些文件必须和 ref_fasta 位于同一个目录下，WDL 才会自动将它们一起定位
-        File ref_dir
-        String fasta
+    # 输入来自于 fastp 的输出
+    File trimmed_fastq1
+    File trimmed_fastq2
+    String sample_id
 
-        # 可配置的参数
-        String platform = platform
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config # e.g., "ecs.g6.8xlarge" for 32c/64GB
-    }
+    # 基因组参考文件和相关索引
+    # 重要：BWA 需要 .amb, .ann, .bwt, .pac, .sa 索引文件
+    # 这些文件必须和 ref_fasta 位于同一个目录下，WDL 才会自动将它们一起定位
+    File ref_dir
+    String fasta
+
+    # 可配置的参数
+    String platform = platform
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config # e.g., "ecs.g6.8xlarge" for 32c/64GB
+
 
     # 构造 RG (Read Group) 字符串，这是下游分析 (特别是 GATK) 的标准要求
     String read_group = "@RG\\tID:~{sample_id}\\tSM:~{sample_id}\\tPL:~{platform}"

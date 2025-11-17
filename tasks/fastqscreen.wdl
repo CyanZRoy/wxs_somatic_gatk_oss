@@ -1,18 +1,16 @@
-version 1.0
-
 task fastq_screen_contamination {
-    input {
-        # 输入与我们上游的 fastp task 输出保持一致
-        File trimmed_fastq1
-        File trimmed_fastq2
 
-        # 配置文件是必须的输入
-        File fastq_screen_conf
+    # 输入与我们上游的 fastp task 输出保持一致
+    File trimmed_fastq1
+    File trimmed_fastq2
 
-        # 将线程数和抽样数作为可配置的输入，并提供默认值
-        Int threads = 16
-        Int subset_n = 1000000
-    }
+    # 配置文件是必须的输入
+    File fastq_screen_conf
+
+    # 将线程数和抽样数作为可配置的输入，并提供默认值
+    Int threads = 16
+    Int subset_n = 1000000
+
 
     # 使用 WDL 内置函数获取输入文件的基本名称，这比之前的 basename(basename(...)) 写法更简洁
     String base_name_1 = basename(trimmed_fastq1, ".fq.gz")

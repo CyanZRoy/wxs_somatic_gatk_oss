@@ -1,14 +1,12 @@
-version 1.0
-
 task fastp_qc {
-    input {
-        File fastq1_gz      # 输入文件 R1，WDL 中用 File 类型表示
-        File fastq2_gz      # 输入文件 R2
-        String sample_id    # 样本名，用于命名输出文件
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
-    }
+
+    File fastq1_gz      # 输入文件 R1，WDL 中用 File 类型表示
+    File fastq2_gz      # 输入文件 R2
+    String sample_id    # 样本名，用于命名输出文件
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
+
     # 根据输入文件大小估算所需磁盘空间，这是一个好习惯
     # 公式：输入文件大小之和 * 2 (预估输出) + 20GB (额外缓冲)
     Int disk_gb = ceil(size(fastq1_gz, "GB") + size(fastq2_gz, "GB")) * 2 + 20

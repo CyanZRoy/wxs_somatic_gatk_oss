@@ -1,32 +1,30 @@
-version 1.0
-
 task somatic_mutect2 {
-    input {
-        # Tumor sample inputs
-        File tumor_bam
-        File tumor_bam_index
-        String tumor_sample_name
 
-        # Normal sample inputs
-        File normal_bam
-        File normal_bam_index
-        String normal_sample_name
+    # Tumor sample inputs
+    File tumor_bam
+    File tumor_bam_index
+    String tumor_sample_name
 
-        # bed
-        String interval_padding
-        File? intervals_bed
+    # Normal sample inputs
+    File normal_bam
+    File normal_bam_index
+    String normal_sample_name
 
-        # Reference genome
-        File ref_dir
-        String fasta
+    # bed
+    String interval_padding
+    File? intervals_bed
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config
+    # Reference genome
+    File ref_dir
+    String fasta
 
-        # 对于 32GB 的机器，为 GATK 的 Java 进程分配 28GB 是一个安全值，为 OS 和 Cromwell 留出 4GB
-        Int java_mem_gb = 28
-    }
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config
+
+    # 对于 32GB 的机器，为 GATK 的 Java 进程分配 28GB 是一个安全值，为 OS 和 Cromwell 留出 4GB
+    Int java_mem_gb = 28
+
 
     # Define the output VCF name
     String output_vcf_name = "~{tumor_sample_name}.mutect2.vcf.gz"

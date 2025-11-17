@@ -1,19 +1,17 @@
-version 1.0
-
 task qualimap_bam_qc {
-    input {
-        # Input from the ApplyBQSR step
-        File recalibrated_bam
-        File recalibrated_bam_index
-        String sample_id
 
-        # A BED or GFF file with gene/feature definitions
-        File? intervals_bed
+    # Input from the ApplyBQSR step
+    File recalibrated_bam
+    File recalibrated_bam_index
+    String sample_id
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config
-    }
+    # A BED or GFF file with gene/feature definitions
+    File? intervals_bed
+
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config
+
 
     # Define the name for the output directory and the final archive
     String output_dir_name = "~{sample_id}_qualimap_results"

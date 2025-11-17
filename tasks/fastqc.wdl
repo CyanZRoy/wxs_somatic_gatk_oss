@@ -1,15 +1,13 @@
-version 1.0
-
 task fastqc {
-    input {
-        # 输入是两个经过 trim 的 FASTQ 文件
-        File trimmed_fastq1
-        File trimmed_fastq2
-        String sample_id
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config
-    }
+
+    # 输入是两个经过 trim 的 FASTQ 文件
+    File trimmed_fastq1
+    File trimmed_fastq2
+    String sample_id
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config
+
 
     # 从输入文件名中提取基本名称，用于构造输出文件名
     # 例如，从 "sample1_1.trimmed.fq.gz" 提取 "sample1_1.trimmed"

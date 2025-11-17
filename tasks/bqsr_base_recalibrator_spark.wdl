@@ -1,28 +1,26 @@
-version 1.0
-
 task bqsr_base_recalibrator_spark {
-    input {
-        # 输入来自 mark_duplicates_spark task
-        File dedup_bam
-        File dedup_bam_index
-        String sample_id
-        File? intervals_bed
-        String interval_padding
 
-        # 参考基因组和相关文件
-        File ref_dir
-        String fasta
+    # 输入来自 mark_duplicates_spark task
+    File dedup_bam
+    File dedup_bam_index
+    String sample_id
+    File? intervals_bed
+    String interval_padding
 
-        # 已知变异位点文件 (例如 dbSNP)
-        File dbsnp_dir
-        String dbsnp
-        File dbmills_dir
-        String db_mills
+    # 参考基因组和相关文件
+    File ref_dir
+    String fasta
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config
-    }
+    # 已知变异位点文件 (例如 dbSNP)
+    File dbsnp_dir
+    String dbsnp
+    File dbmills_dir
+    String db_mills
+
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config
+
 
     # 定义输出文件的名称
     String recal_table_filename = "~{sample_id}.recal_data.table"

@@ -1,16 +1,14 @@
-version 1.0
-
 task mark_duplicates_spark {
-    input {
-        # 输入来自 bwa_mem_and_sort task
-        File input_bam
-        File input_bam_index  # GATK tools require the index file
-        String sample_id
 
-        # --- 平台特定输入 ---
-        String docker_image
-        String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
-    }
+    # 输入来自 bwa_mem_and_sort task
+    File input_bam
+    File input_bam_index  # GATK tools require the index file
+    String sample_id
+
+    # --- 平台特定输入 ---
+    String docker_image
+    String cluster_config # e.g., "ecs.g6.4xlarge" for 16c/32GB
+
 
     # 定义输出文件的名称
     String output_bam_name = "~{sample_id}.dedup.bam"
