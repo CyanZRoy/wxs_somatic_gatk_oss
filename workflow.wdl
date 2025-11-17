@@ -84,7 +84,7 @@ workflow {{ project_name }} {
             fasta=fasta,
 		    ref_dir=ref_dir,
             platform=platform,
-            docker_image = bwa_docker_image,
+            docker_image = gatk_docker_image,
             cluster_config = BIGcluster_config
     }
 
@@ -155,7 +155,7 @@ workflow {{ project_name }} {
             fasta=fasta,
 		    ref_dir=ref_dir,
             platform=platform,
-            docker_image = bwa_docker_image,
+            docker_image = gatk_docker_image,
             cluster_config = BIGcluster_config
     }
 
