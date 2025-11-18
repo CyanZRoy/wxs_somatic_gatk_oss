@@ -10,7 +10,7 @@ task annovar_annotation {
 
     # Annovar 参数
     String buildver = "hg38"
-    String protocols = "refGene,clinvar_20221231,gnomad40_exome,dbnsfp42c,cosmic99_v1"
+    String protocols = "refGene,clinvar_20221231,gnomad40_exome,dbnsfp42c,cosmic70"
     String operations = "g,f,f,f,f"
     String cluster_config
     String docker_image
