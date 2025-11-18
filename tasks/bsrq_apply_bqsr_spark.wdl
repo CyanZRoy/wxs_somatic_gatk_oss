@@ -30,7 +30,7 @@ task bsrq_apply_bqsr_spark {
     Int spark_executor_memory_gb = 26
 
     # 磁盘空间估算：输入 BAM * 2.5 (为 shuffle 和输出留足空间) + 参考基因组大小 + 20GB
-    Int disk_gb = ceil(size(dedup_bam, "GB") * 2.5) + 120
+    Int disk_gb = ceil(size(dedup_bam, "GB") * 4) + 120
 
     command <<<
         set -e

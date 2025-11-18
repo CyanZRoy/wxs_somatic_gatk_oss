@@ -30,7 +30,7 @@ task somatic_mutect2 {
     String output_vcf_name = "${tumor_sample_name}.mutect2.vcf.gz"
 
     # Disk space estimation: Sum of BAMs + Ref + 40GB buffer for VCF and temp files
-    Int disk_gb = ceil(size(tumor_bam, "GB") + size(normal_bam, "GB")) + 140
+    Int disk_gb = ceil(size(tumor_bam, "GB") + size(normal_bam, "GB"))*3 + 140
 
 
     command <<<
