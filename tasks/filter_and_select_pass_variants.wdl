@@ -30,7 +30,7 @@ task filter_and_select_pass_variants {
         # 步骤 1: 运行 GATK FilterMutectCalls
         # 使用 Mutect2 生成的 .stats 文件来帮助过滤
         gatk --java-options "-Xmx${java_mem_gb}G" FilterMutectCalls \
-            -R ${ref_dir}/${fasta} \ \
+            -R ${ref_dir}/${fasta} \
             -V ${mutect2_vcf} \
             -stats ${mutect2_stats} \
             -O ${filtered_vcf_name}
