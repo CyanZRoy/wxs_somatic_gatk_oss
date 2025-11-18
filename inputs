@@ -18,6 +18,7 @@
   "{{ project_name }}.fastqc_docker_image": "{{ fastqc_docker_image }}",
   "{{ project_name }}.bwa_docker_image": "{{ bwa_docker_image }}",
   "{{ project_name }}.gatk_docker_image": "{{ gatk_docker_image }}",
+  "{{ project_name }}.filter_gatk_docker_image": "{{ filter_gatk_docker_image }}",
   "{{ project_name }}.annovar_docker": "{{ annovar_docker }}",
   "{{ project_name }}.qualimap_docker_image": "{{ qualimap_docker_image }}",
   "{{ project_name }}.SMALLcluster_config": "{{ SMALLcluster_config }}",

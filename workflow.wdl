@@ -42,6 +42,7 @@ workflow {{ project_name }} {
     String fastqc_docker_image
     String bwa_docker_image
     String gatk_docker_image
+    String filter_gatk_docker_image
     String annovar_docker
     String qualimap_docker_image
 
@@ -226,7 +227,7 @@ workflow {{ project_name }} {
             tumor_sample_name = tumor_sample_id,
             fasta=fasta,
 		    ref_dir=ref_dir,
-            docker_image = gatk_docker_image,
+            docker_image = filter_gatk_docker_image,
             cluster_config = SMALLcluster_config
     }
 
