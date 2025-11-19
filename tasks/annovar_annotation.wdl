@@ -21,7 +21,7 @@ task annovar_annotation {
 
     # 磁盘空间估算：数据库解压后大小 + 输入VCF + 输出VCF + 20GB 缓冲
     # 这是一个粗略估算，Annovar 数据库可能很大
-    Int disk_gb = ceil(ceil(size(filtered_vcf, "GB") * 3)) + 220
+    Int disk_gb = ceil(ceil(size(filtered_vcf, "GB") * 8)) + 220
 
     command <<<
         set -e

@@ -32,7 +32,7 @@ task bqsr_base_recalibrator_spark {
     Int spark_executor_memory_gb = 26
 
     # 磁盘空间估算：输入 BAM 大小 + 参考基因组大小 + 20GB 缓冲
-    Int disk_gb = ceil(size(dedup_bam, "GB"))*4 + 120
+    Int disk_gb = ceil(size(dedup_bam, "GB"))*10 + 120
 
     command <<<
         set -e

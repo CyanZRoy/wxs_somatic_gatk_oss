@@ -19,7 +19,7 @@ task filter_and_select_pass_variants {
     String pass_vcf_name = "${tumor_sample_name}.pass.vcf.gz"
 
     # 磁盘空间估算：输入 VCF 大小的 3 倍 (一个用于输入，两个用于输出) + 20GB
-    Int disk_gb = ceil(size(mutect2_vcf, "GB") * 3) + 20
+    Int disk_gb = ceil(size(mutect2_vcf, "GB") * 10) + 20
 
     # 对于 16GB 的机器，为 GATK 的 Java 进程分配 13GB 是一个安全值，为 OS 和 Cromwell 留出 3GB
     Int java_mem_gb = 13
