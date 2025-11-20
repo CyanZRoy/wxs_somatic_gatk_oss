@@ -18,7 +18,7 @@ task qualimap_bam_qc {
     String output_archive_name = "${sample_id}.qualimap_results.tar.gz"
 
     # Disk space estimation: Input BAM size * 2 (for temp files) + 20GB buffer
-    Int disk_gb = ceil(size(recalibrated_bam, "GB") * 8) + 20
+    Int disk_gb = ceil(size(recalibrated_bam, "GB") * 5) + 20
 
     # 对于 32GB 的机器，为 Qualimap 的 Java 进程分配 28GB，为 OS 预留 4GB
     Int java_mem_gb = 28
