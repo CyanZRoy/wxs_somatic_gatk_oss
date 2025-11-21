@@ -15,7 +15,7 @@ task mark_duplicates_spark {
     String metrics_file_name = "${sample_id}.metrics.txt"
 
     # 磁盘空间估算：输入 BAM * 2.5 (为 shuffle 空间和输出留足余量) + 20GB 缓冲
-    Int disk_gb = ceil(size(input_bam, "GB") * 6) + 20
+    Int disk_gb = ceil(size(input_bam, "GB") * 8) + 120
 
     # 机器有 16 核，全部分配给 Spark Executor
     Int spark_executor_cores = 16
