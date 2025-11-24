@@ -37,7 +37,7 @@ task somatic_mutect2 {
         set -e
 
         if [ ${intervals_bed} ]; then
-            INTERVAL="--intervals ${intervals_bed} --interval_padding ${interval_padding}"
+            INTERVAL="--intervals ${intervals_bed} --interval-padding ${interval_padding}"
         else
             INTERVAL=""
         fi
