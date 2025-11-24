@@ -36,7 +36,7 @@ task bsrq_apply_bqsr_spark {
         set -e
 
         if [ ${intervals_bed} ]; then
-            INTERVAL="--interval ${intervals_bed} --interval_padding ${interval_padding}"
+            INTERVAL="--intervals ${intervals_bed} --interval_padding ${interval_padding}"
         else
             INTERVAL=""
         fi
