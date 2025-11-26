@@ -47,7 +47,6 @@ task bqsr_base_recalibrator_spark {
             -R ${ref_dir}/${fasta} \
             -I ${dedup_bam} \
             --known-sites ${dbsnp_dir}/${dbsnp} \
-            --known-sites ${dbmills_dir}/${db_mills} \
             -O ${recal_table_filename} \
             $INTERVAL \
             --conf 'spark.executor.cores=${spark_executor_cores}' \
