@@ -1,6 +1,6 @@
 {
-  "ref_dir": "oss://genomics-platform-reference-data/hg38_ucsc/",
-  "fasta": "GRCh38.d1.vd1.fa",
+  "ref_dir": "oss://genomics-platform-reference-data/hg38_ucsc/genome/",
+  "fasta": "hg38.fa",
   "dbsnp_dir": "oss://genomics-platform-reference-data/GRCh38.d1.vd1/",
   "dbsnp": "dbsnp_146.hg38.vcf",
   "dbmills_dir": "oss://genomics-platform-reference-data/GRCh38.d1.vd1/",
