@@ -9,7 +9,7 @@ task fastp_qc {
 
     # 根据输入文件大小估算所需磁盘空间，这是一个好习惯
     # 公式：输入文件大小之和 * 2 (预估输出) + 20GB (额外缓冲)
-    Int disk_gb = ceil(size(fastq1_gz, "GB") + size(fastq2_gz, "GB")) * 2 + 20
+    Int disk_gb = ceil(size(fastq1_gz, "GB") + size(fastq2_gz, "GB")) * 2 + 80
 
     # command 块中是实际要执行的 shell 命令
     command <<<

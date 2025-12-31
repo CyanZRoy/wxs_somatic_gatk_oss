@@ -25,7 +25,7 @@ task bwa_mem_and_sort {
     String output_bam_name = "${sample_id}.sorted.bam"
 
     # 磁盘空间估算：(输入 FQ x 2.5) + 参考基因组大小 + 20GB 缓冲
-    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) * 3 + 120
+    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) * 2 + 320
 
     # `command` 块中复现 shell 管道
     command <<<

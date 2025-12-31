@@ -15,7 +15,7 @@ task fastqc {
     String base_name_2 = basename(trimmed_fastq2, ".fq.gz")
 
     # 估算磁盘空间
-    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) + 10
+    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) + 50
 
     command <<<
         set -e

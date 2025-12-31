@@ -17,7 +17,7 @@ task fastq_screen_contamination {
     String base_name_2 = basename(trimmed_fastq2, ".fq.gz")
 
     # WDL 标准的磁盘空间估算
-    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) + 50
+    Int disk_gb = ceil(size(trimmed_fastq1, "GB") + size(trimmed_fastq2, "GB")) + 80
 
     command <<<
         set -e
